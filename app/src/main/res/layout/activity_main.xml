@@ -5,14 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <TextView
+        android:id="@+id/addcontact_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="15dp"
+        android:text="Add contact "
+        android:textColor="@color/black"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="#F2F2F2"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        android:text="Enter The name "
+        android:textColorHint="#000"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addcontact_tv" />
+    <EditText
+        android:id="@+id/et_phoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="#F2F2F2"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        android:text="Enter The Number "
+        android:textColorHint="#000"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="#F2F2F2"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        android:text="Enter The description "
+        android:textColorHint="#000"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_phoneNumber" />
+    <Button
+        android:id="@+id/btn_saveContact"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/et_description"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#F2F2F2"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="20dp"
+        android:text="Save"
+        android:layout_marginTop="10dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_saveContact"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_contact"
+        android:orientation="vertical"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
