@@ -3,14 +3,15 @@ package com.example.phonecontacts
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.example.phonecontacts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var etName: EditText
-    private lateinit var etPhone: EditText
-    private lateinit var etDescription: EditText
+    private lateinit var name: String
+    private lateinit var phoneNum: String
+    private lateinit var desc: String
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ContactAdapter
     private var contactlist: MutableList<Contact_kt> = arrayListOf()
@@ -20,16 +21,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initRecyclerView()
-        addContact()
+        //addContact()
     }
 
     private fun initRecyclerView() {
-        createContactList()
+      //  createContactList()
+
         adapter = ContactAdapter(contactlist)
 
         adapter.onContactClickListner = ContactAdapter.OnContactClickListener { contact ->
             navigateToContactDetailsActivity(contact)
         }
+        saveContact()
      /*   adapter.onSaveClickListener = ContactAdapter.OnSaveClickListener { contact ->
             SaveToContact(contact)
         }*/
@@ -57,7 +60,42 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun addContact() {
+    fun saveContact() {
+        binding.apply {
+            btnSaveContact.setOnClickListener {
+                desc = binding.etDescription.text.toString()
+                name = binding.etName.text.toString()
+                phoneNum = binding.etPhoneNumber.text.toString()
+                contactlist.add(Contact_kt(name, phoneNum, R.drawable.img, desc))
+              binding.etName.text?.clear()
+                binding.etPhoneNumber.text?.clear()
+                binding.etDescription.text?.clear()
+            //    Toast.makeText(this, "Contact added successfully", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+ /*   private fun isValidName(): Boolean{
+        name = binding.etName.text.toString()
+        return if (name.length < 3) {
+            binding.contactNameLayout.error = "Not valid name"
+            false
+        }else {
+            binding.contactNameLayout.error = null
+            true
+        }
+    }
+    private fun isValidNumber(): Boolean{
+        phoneNum = binding.contactNumber.text.toString()
+        return if (phoneNum.length < 10) {
+            binding.contactNumberLayout.error = "Please enter 10 numbers"
+            false
+        } else {
+            binding.contactNumberLayout.error = null
+            true
+        }
+    }*/
+
+   /* private fun addContact() {
         binding.apply {
             btnSaveContact.setOnClickListener {
                 contactlist.add(
@@ -75,7 +113,7 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         }
-    }
+    }*/
     private fun navigateToContactDetailsActivity(contact: Contact_kt) {
         val intent = Intent(this, ContactDetails::class.java)
         intent.putExtra("contact_details", contact)
