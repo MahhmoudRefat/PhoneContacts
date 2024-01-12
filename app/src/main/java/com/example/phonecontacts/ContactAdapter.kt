@@ -3,6 +3,7 @@ package com.example.phonecontacts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ class ContactAdapter(val items: List<Contact_kt>) :
         val acount_name: TextView = itemView.findViewById(R.id.tv_name)
         val acount_phone: TextView = itemView.findViewById(R.id.tv_phone)
         val post_image: ImageView = itemView.findViewById(R.id.contact_image_)
-        val saveContact: ImageView = itemView.findViewById(R.id.btn_saveContact)
+      //  val saveContact: Button = itemView.findViewById(R.id.btn_saveContact)
 
     }
     override fun getItemCount(): Int = items.size ?: 0
@@ -35,25 +36,25 @@ class ContactAdapter(val items: List<Contact_kt>) :
                 }
             }
         }
-        if (onSaveClickListener != null ) {
+     /*   if (onSaveClickListener != null ) {
             holder.saveContact.setOnClickListener {
                 if (contact != null) {
                     onSaveClickListener?.onSaveClick(contact) // this is the function calling
                     //here is the good place to know witch  item is clicked
                 }
             }
-        }
+        }*/
     }
      var onContactClickListner:OnContactClickListener?=null
-     var onSaveClickListener:OnSaveClickListener?=null // the delegate -> where the adapter could call the main activity
+    // var onSaveClickListener:OnSaveClickListener?=null // the delegate -> where the adapter could call the main activity
 
 
     fun interface OnContactClickListener{
         fun onContactClick(contact:Contact_kt )
     }
-    fun interface OnSaveClickListener{
+  /*  fun interface OnSaveClickListener{
         fun onSaveClick(contact:Contact_kt ) // the main is the implemntaion
-    }
+    }*/
 
 
 }
