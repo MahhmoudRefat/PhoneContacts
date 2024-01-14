@@ -21,21 +21,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initRecyclerView()
+        saveContact()
         //addContact()
     }
 
     private fun initRecyclerView() {
-      //  createContactList()
 
         adapter = ContactAdapter(contactlist)
 
         adapter.onContactClickListner = ContactAdapter.OnContactClickListener { contact ->
             navigateToContactDetailsActivity(contact)
         }
-        saveContact()
-     /*   adapter.onSaveClickListener = ContactAdapter.OnSaveClickListener { contact ->
-            SaveToContact(contact)
-        }*/
+
+
 
         /* adapter.onSaveClickListener = object :ContactAdapter.OnSaveClickListener{
              override fun onSaveClick(contact: Contact_kt) {
@@ -45,6 +43,26 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvContacts.adapter = adapter
     }
+
+    fun saveContact() {
+            binding.btnSaveContact.setOnClickListener {
+                desc = binding.etDescription.text.toString()
+                if (isValidName() && isValidNumber()) {
+                    contactlist.add(Contact_kt(name, phoneNum, R.drawable.img, desc))
+                    binding.etName.text?.clear()
+                    binding.etPhoneNumber.text?.clear()
+                    binding.etDescription.text?.clear()
+                    adapter.notifyItemInserted(contactlist.size-1)
+                }
+            }
+    }
+
+    private fun navigateToContactDetailsActivity(contact: Contact_kt) {
+        val intent = Intent(this, ContactDetails::class.java)
+        intent.putExtra("contact_details", contact)
+        startActivity(intent)
+    }
+
 
     private fun SaveToContact(contact: Contact_kt) {
         /* binding.etName.text.toString()
@@ -59,41 +77,24 @@ class MainActivity : AppCompatActivity() {
             )
         )
     }
-
-    fun saveContact() {
-        binding.apply {
-            btnSaveContact.setOnClickListener {
-                desc = binding.etDescription.text.toString()
-                name = binding.etName.text.toString()
-                phoneNum = binding.etPhoneNumber.text.toString()
-                contactlist.add(Contact_kt(name, phoneNum, R.drawable.img, desc))
-              binding.etName.text?.clear()
-                binding.etPhoneNumber.text?.clear()
-                binding.etDescription.text?.clear()
-            //    Toast.makeText(this, "Contact added successfully", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
- /*   private fun isValidName(): Boolean{
+   private fun isValidName(): Boolean{
         name = binding.etName.text.toString()
         return if (name.length < 3) {
-            binding.contactNameLayout.error = "Not valid name"
+           Toast.makeText(this,"Not valid name",Toast.LENGTH_SHORT).show()
             false
         }else {
-            binding.contactNameLayout.error = null
             true
         }
     }
     private fun isValidNumber(): Boolean{
-        phoneNum = binding.contactNumber.text.toString()
+        phoneNum = binding.etPhoneNumber.text.toString()
         return if (phoneNum.length < 10) {
-            binding.contactNumberLayout.error = "Please enter 10 numbers"
+            Toast.makeText(this,"Not valid number pleases enter a number from 11 number ",Toast.LENGTH_SHORT).show()
             false
         } else {
-            binding.contactNumberLayout.error = null
             true
         }
-    }*/
+    }
 
    /* private fun addContact() {
         binding.apply {
@@ -106,25 +107,11 @@ class MainActivity : AppCompatActivity() {
                         binding.etDescription.text.toString()
                     )
                 )
-                Toast.makeText(
-                    this@MainActivity,
-                    "Contact Added Successfully",
-                    Toast.LENGTH_SHORT
-                ).show()
+
             }
         }
     }*/
-    private fun navigateToContactDetailsActivity(contact: Contact_kt) {
-        val intent = Intent(this, ContactDetails::class.java)
-        intent.putExtra("contact_details", contact)
-        startActivity(intent)
-    }
 
-    private fun createContactList() {
-
-        contactlist.add(Contact_kt("mahmoud", "0111669336", R.drawable.img, ""))
-
-    }
 }
 
 

@@ -19,6 +19,8 @@ class ContactDetails : AppCompatActivity() {
      val contact = intent.parcelable<Contact_kt>("contact_details")
         contact?.let{  contact ->binding.tvNameDetails.text=contact.name
             binding.tvPhoneDetails.text=contact.phoneNumber
+            binding.tvDescriptionDetails.text=contact.description
+
            // binding.contactImage.setImageResource(contact.imageId ?: R.drawable.img)
         }
 

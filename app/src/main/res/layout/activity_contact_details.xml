@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ContactDetails">
+
     <TextView
         android:id="@+id/tv_name_details"
         android:layout_width="wrap_content"
@@ -20,19 +21,19 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/contact_image_details"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="290dp"
+        android:layout_height="290dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         app:cardCornerRadius="40dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/contact_image_details_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="290dp"
+            android:layout_height="350dp"
             android:scaleType="fitXY"
             android:src="@drawable/img" />
     </androidx.cardview.widget.CardView>
@@ -46,10 +47,11 @@
         android:layout_marginTop="20dp"
         android:text="012xxxxx"
         android:textColor="#E2686666"
-        android:textSize="14dp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name_details" />
+
     <TextView
         android:id="@+id/tv_description_details"
         android:layout_width="wrap_content"
@@ -58,7 +60,7 @@
         android:layout_marginTop="20dp"
         android:text="this is my friend "
         android:textColor="#E2686666"
-        android:textSize="14dp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_phone_details" />
